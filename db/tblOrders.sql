@@ -1,11 +1,13 @@
-/*
+/* 
 Entidade: Pedidos
 id
 id_user
 id_status
+expired_at
 created_at
 updated_at
 */
+
 CREATE TABLE tblOrders(
     id_order INT PRIMARY KEY AUTO_INCREMENT,
     id_user INT NOT NULL,
