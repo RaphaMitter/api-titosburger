@@ -1,22 +1,27 @@
 <?php
 
+//echo $_SERVER["QUERY_STRING"];
+
 require_once("../controller/controllerUsers.php");
 require_once("../model/modelUsers.php");
 
-if($_SERVER["REQUEST_METHOD"] == "DELETE") {
+if($_SERVER["REQUEST_METHOD"] == "PUT") {
 
     $query = $_SERVER["QUERY_STRING"];
     parse_str($query, $params);
+
     $id = $params["id"];
 
-    $controllerUsers = new controllerUsers();
-    $delete = $controllerUsers->delete($id);
+    $data = json_decode(file_get_contents("php://input"), true);
 
-    if($delete) {
-        $msg = array("msg" => "User was deleted successfully.");
+    $controllerUsers = new controllerUsers();
+    $update = $controllerUsers->update($id, $data);
+
+    if($update) {
+        $msg = array("msg" => "User updated successfully");
         echo json_encode($msg);
     } else {
-        $msg = array("msg" => "Error, user was not deleted.");
+        $msg = array("msg" => "Error, User was not updated.");
         echo json_encode($msg);
     }
 
