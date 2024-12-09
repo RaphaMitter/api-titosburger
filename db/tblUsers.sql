@@ -11,12 +11,11 @@ mail
 id_status
 created_at
 updated_at
- */
-
-Create TABLE tblUsers (
+*/
+CREATE TABLE tblUsers (
     id_user INT PRIMARY KEY AUTO_INCREMENT,
     firstname VARCHAR(15) NOT NULL,
-    lastname VARCHAR(10) NOT NULL,
+    lastname VARCHAR(10)  NOT NULL,
     username VARCHAR(15) NOT NULL,
     pass_user VARCHAR(120) NOT NULL,
     birthday DATE NOT NULL,
@@ -27,6 +26,3 @@ Create TABLE tblUsers (
     updated_at DATETIME,
     FOREIGN KEY (id_status) REFERENCES tblStatus(id_status)
 );
-
-
-

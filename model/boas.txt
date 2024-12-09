@@ -1,0 +1,36 @@
+import 'package:flutter/material.dart';
+class BoasVindas extends StatelessWidget {
+  const BoasVindas({super.key});
+  @overrride
+  Widget build(BuildContext contex) {
+    return Scaffold(
+      body: SafeArea(
+        child Container(
+          constraints: const BoxConstContraints.expand(),
+          color(0xFFFFFFFF),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Container(
+                  color: Color(0xFF5A0061),
+                  width double.infinity,
+                  height: double.infinity,
+                  child: SingleChildScrollView(
+                    chid: SingleChildScrollView(
+                      padding: const EdgeInsets.only(left: 7, right:
+                      child: Column(
+                        
+                      )
+                      )
+                    )
+                  )
+                ) 
+                )
+            ]
+          )
+        ),
+        )
+    )
+  }
+}

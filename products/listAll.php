@@ -16,9 +16,6 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
         echo json_encode($msg);
     }
 
-    } else {
-        header("HTTP/1.1 405 Method Not Allowed");
-    }
-
-
-?>
+} else {
+    header("HTTP/1.1 405 Method Not Allowed");
+}

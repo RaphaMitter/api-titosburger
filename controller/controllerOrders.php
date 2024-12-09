@@ -1,105 +1,100 @@
 <?php
 
-class controllerOrders {
+class controllerOders {
+    public function listOrderByclient($id_user){
+    try {
 
-    public function listOrderByClient($id_user) {
-        try {
+        $modelOrders = new modelOrders();
+        return $modelOrders->listOrderByclient($id_user);
 
-            $modelOrders = new modelOrders();
-            return $modelOrders->listOrderByClient($id_user);
-
-            } catch (Exception $e) {
-                return flase;
-        }
+    } catch(PDOException $e) {
+        return false;
     }
+  }
+   public function createOrder($data) {
+    try {
+        $modelOrders = new modelOrders();
+        return $modelOrders->createOrder($data);
 
-    public function createOrder($data) {
-        try {
-
-            $modelOrders = new modelOrders();
-            return $modelOrders->createOrder($data);
-
-        } catch (PDOException $e) {
-            return false;
-        }
+    } catch (PDOException $e) {
+        return false;
     }
+  }
 
-    public function updateOrder($id, $data) {
-        try {
+  public function updateOrder($id, $data) {
+    try{
+        $modelOrders = new modelOrders();
+        return $modelOrders->updateOrder($id, $data);
 
-            $modelOrders = new modelOrders();
-            return $modelOrders->updateOrder($id, $data);
-
-        } catch (PDOException $e) {
-        return false; 
-        }
+    } catch (PDOExceotion $e) {
+        return false;
     }
+  }
+  
+  public function detailOrderByid($id) {
+    try {
+        $modelOrders = new modelOrder();
+        return $modelOrders->detailOrderByid($id);
 
-    public function detailOrderById($id) {
-        try {
-
-            $modelOrders = new modelOrders();
-            return $modelOrders->detailOrderById($id);
-
-        } catch (PDOException $e) {
-            return false;
-        }
+    } catch (PDException $e) {
+        return false;
     }
+  }
 
-    public function listAllOrders() {
-        try {
+  public function listAllOrders() {
+    try {
+        $modelOrders = new modelOrders();
+        return $modelOrders->listAllOrders();
 
-            $modelOrders = new modelOrders();
-            return $modelOrders->listAllOrders();
-
-        } catch (PDOException $e) {
-            return false;
-        }
+    } catch (PDOEception $e) {
+        return false;
     }
+  }
 
-    public function listOrdersByStatus($id_status) {
-        try { 
+  public function listOrdersByStatus($id_status) {
+    try {
+    $modelOrders->listOrdersByStatus($id_status);
+    return $modelOrders->listOrdersByStatus($id_status);
 
-            $modelOrders = new modelOrders();
-            return $modelOrders->listOrdersByStatus($id_status);
+  } catch (PDException $e) {
+    return false;
+   }
 
-        } catch (PDOException $e) {
-            return false;
-        }
+  }
+
+  public function createCart($data) {
+    try {
+
+        $modelOrders  = new modelOrders();
+        return $modelOrders->createCart($data);
+
+    } catch (PDoEception $e) {
+        return false;
     }
+  }
 
-    public function createCart($data) {
-        try {
+  public function insertItenCart($data) {
+    try {
 
-            $modelCart = new modelCart();
-            return $modelCart->createCart($data);
+        $modelOrders = new modelOrders();
+        return $modelOrders->insertItenCart($data);
 
-        } catch (PDOExcepion $e) {
-            return false;
-        }
+    } catch (PDOException $e) {
+        return false;
     }
+  }
 
-    public function insertItenCart($data) {
-        try {
+  public function deleteCart($id_cart) {
+    try {
 
-            $modelOrders = new modelOrders();
-            return $modelOrders->insertItenCart($data);
+        $modelOrders =  new modelOrders();
+        return $modelOrders->deleteCart($id_cart);
 
-        } catch (PDOException $e) {
-           return false;
-        }
+    } catch (PDOExeception $e) {
+        return false;
     }
-
-    public function deleteCart($id_cart) {
-        try {
-
-            $modelOrders = new modelOrders();
-            return $modelOrders->deleteCart($id_cart);
-
-        } catch (PDOException $e) {
-            return false;
-        }
-    }
+  }
 
 }
+
 ?>

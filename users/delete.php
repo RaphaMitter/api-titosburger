@@ -13,10 +13,10 @@ if($_SERVER["REQUEST_METHOD"] == "DELETE") {
     $delete = $controllerUsers->delete($id);
 
     if($delete) {
-        $msg = array("msg" => "Deleted successfully.");
+        $msg = array("msg" => "Delete was deleted successfully.");
         echo json_encode($msg);
     } else {
-        $msg = array("msg" => "Error, not deleted.");
+        $msg = array("msg" => "Error, delete was not deleted.");
         echo json_encode($msg);
     }
 

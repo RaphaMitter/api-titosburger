@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
     $id = $_GET["id_category"];
 
     $controllerProducts = new controllerProducts();
-    $list = $controllerProducts-> listBYCategory($id);
+    $list = $controllerProducts->listByCategory($id);
 
     if($list) {
         $msg = array("products" => $list);
@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
         $msg = array("products" => [], "msg" => "Products not found");
         echo json_encode($msg);
     }
+
 } else {
-    header("HTTP/1.1 45 Method NOt Allowed");
-                                                                                                          }
-?>
+    header("HTTP/1.1 405 Method Not Allowed");
+}

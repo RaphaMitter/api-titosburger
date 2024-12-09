@@ -16,7 +16,7 @@ class modelProducts {
             $id_status = filter_var($data["id_status"], FILTER_SANITIZE_NUMBER_INT);
 
             $conn = connectionDB::connect();
-            $save = $conn->prepare("INSERT INTO tblProducts (product_name, image, price, description, id_category, id_status, created_at) VALUES (:product_name, :image, :price, :description, :id_category, :id_status, NOW())");
+            $save = $conn->prepare("INSERT INTO tblProducts (product_name, image, price, description, id_category, id_status, created_at) VALUES (:product_name, :image, :price, :description, :id_category, :id_status, NOW() )");
             $save->bindParam(":product_name", $product_name);
             $save->bindParam(":image", $image);
             $save->bindParam(":price", $price);
@@ -27,22 +27,22 @@ class modelProducts {
 
             return true;
 
-
         } catch (PDOException $e) {
             return false;
         }
     }
 
     //Listar todos os produtos
-    public function listAll() {
+    public function listAll(){
         try {
+
             $conn = connectionDB::connect();
 
-            $list = $conn->prepare("SELECT * FROM tblProducts");
+            $list = $conn->query("SELECT * FROM tblProducts");
             $result = $list->fetchAll(PDO::FETCH_ASSOC);
 
             return $result;
-
+            
         } catch (PDOException $e) {
             return false;
         }
@@ -51,6 +51,7 @@ class modelProducts {
     //Listar produto por ID
     public function searchById($id) {
         try {
+            
             $conn = connectionDB::connect();
 
             $search = $conn->prepare("SELECT * FROM tblProducts WHERE id_product = :id");
@@ -64,11 +65,11 @@ class modelProducts {
             return false;
         }
     }
-    
+
     //Listar produtos por categoria
     public function listByCategory($id) {
         try {
-
+            
             $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
 
             $conn = connectionDB::connect();
@@ -78,7 +79,7 @@ class modelProducts {
             $result = $listByCategory->fetchAll(PDO::FETCH_ASSOC);
 
             return $result;
-            
+
         } catch (PDOException $e) {
             return false;
         }
@@ -87,18 +88,22 @@ class modelProducts {
     //Atualizar produto por ID
     public function update($id, $data) {
         try {
-
+            
             $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
             $product_name = htmlspecialchars($data["product_name"], ENT_NOQUOTES);
             $image = htmlspecialchars($data["image"], ENT_NOQUOTES);
             $price = filter_var($data["price"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $id_category = filter_var($data["id_category"], FILTER_SANITIZE_NUMBER_INT);
-            $id_status = filter_var($data["id_status"], FILTER_SANITIZE-NUMBER_INT);
+            $id_status = filter_var($data["id_status"], FILTER_SANITIZE_NUMBER_INT);
             $description = htmlspecialchars($data["description"], ENT_NOQUOTES);
 
             $conn = connectionDB::connect();
 
-            $update = $conn->prepare("UPDATE tblProducts SET product_name = :product_name, image = :image, price = :price, description = :description, id_category = :id_category, id_status = :id_status,, updated_at = NOW() WHERE id_product = :id ");
+            $update = $conn->prepare("UPDATE tblProducts SET product_name = :product_name, 
+                                        image = :image, price = :price,
+                                        description = :description, 
+                                        id_category = :id_category, id_status = :id_status, 
+                                        updated_at = NOW() WHERE id_product = :id ");
             $update->bindParam(":product_name", $product_name);
             $update->bindParam(":image", $image);
             $update->bindParam(":price", $price);
@@ -110,7 +115,6 @@ class modelProducts {
 
             return true;
 
-
         } catch (PDOException $e) {
             return false;
         }
@@ -119,18 +123,19 @@ class modelProducts {
     //Deletar um produto por ID
     public function delete($id) {
         try {
+            
             $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
 
             $conn = connectionDB::connect();
+
             $delete = $conn->prepare("DELETE FROM tblProducts WHERE id_product = :id");
             $delete->bindParam(":id", $id);
             $delete->execute();
-            
+
             return true;
 
         } catch (PDOException $e) {
             return false;
         }
-
     }
 }

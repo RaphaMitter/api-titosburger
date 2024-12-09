@@ -1,7 +1,7 @@
 <?php
 
-require_once("../controller/controllerUsers.php");
-require_once("../model/modelUsers.php");
+require_once("../controller/controllerCategories.php");
+require_once("../model/modelCategories.php");
 
 if($_SERVER["REQUEST_METHOD"] == "DELETE") {
 
@@ -9,14 +9,14 @@ if($_SERVER["REQUEST_METHOD"] == "DELETE") {
     parse_str($query, $params);
     $id = $params["id"];
 
-    $controllerUsers = new controllerUsers();
-    $delete = $controllerUsers->delete($id);
+    $controllerCategories = new controllerCategories();
+    $delete = $controllerCategories->delete($id);
 
     if($delete) {
-        $msg = array("msg" => "User was deleted successfully.");
+        $msg = array("msg" => "Category was deleted successfully.");
         echo json_encode($msg);
     } else {
-        $msg = array("msg" => "Error, user was not deleted.");
+        $msg = array("msg" => "Error, category was not deleted.");
         echo json_encode($msg);
     }
 
